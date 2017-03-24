@@ -2,6 +2,7 @@
 
 const {adapters: {nodeunit: λ}} = require('fantasy-check');
 const {identity} = require('fantasy-combinators');
+const {of, concat, empty} = require('fantasy-land')
 
 const m = require('fantasy-land/laws/monoid');
 const s = require('fantasy-land/laws/semigroup');
@@ -27,4 +28,28 @@ exports.setoid = {
     'reflexivity': λ.law(sʹ.reflexivity)(Disjunction),
     'symmetry': λ.law(sʹ.symmetry)(Disjunction),
     'transitivity': λ.law(sʹ.transitivity)(Disjunction)
+};
+
+exports.basicUsage = test => {
+    const expected = { x: true };
+    const expected2 = { x: false };
+
+    test.deepEqual(
+		  Disjunction(false)
+          [concat](Disjunction(false))
+          [concat](Disjunction(false))
+          [concat](Disjunction(false))
+          [concat](Disjunction(true))
+        , expected
+    )
+	
+    test.deepEqual(
+		  Disjunction(false)
+          [concat](Disjunction(false))
+          [concat](Disjunction(false))
+          [concat](Disjunction(false))
+        , expected2
+    )
+
+    test.done();
 };
