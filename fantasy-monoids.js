@@ -13,9 +13,17 @@ const Max            = require('./src/max');
 const concat         = require('./src/concat');
 const mconcat        = require('./src/mconcat');
 
+// Alias
+const Sum = Additive;
+const All = Conjunction;
+const Any = Disjunction;
+
 module.exports = { Additive
+                 , Sum
                  , Conjunction
+                 , All
                  , Disjunction
+                 , Any
                  , Dual
                  , Endo
                  , Multiplicative
